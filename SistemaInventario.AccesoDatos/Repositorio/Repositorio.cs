@@ -27,7 +27,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
             await dbSet.AddAsync(entidad);   //insert into Tabla (propio del entity framework)          
         }
 
-        public async Task<T> obtener(int id)
+        public async Task<T> Obtener(int id)
         {
             return await dbSet.FindAsync(id);  //select * from (solo x Id)         
         }
