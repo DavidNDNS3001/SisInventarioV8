@@ -11,12 +11,15 @@ namespace SistemaInventario.AccesoDatos.Repositorio
     public class UnidadTrabajo : IUnidadTrabajo
     {
         private readonly ApplicationDbContext _db;
-        public IBodegaRepositorio Bodega { get; set; }  
+        public IBodegaRepositorio Bodega { get; set; }
+
+        public ICategoriaRepositorio Categoria { get; set; }
 
         public UnidadTrabajo(ApplicationDbContext db)
         {
             _db = db;
             Bodega = new BodegaRepositorio(_db);
+            Categoria=new CategoriaRepositorio(_db);    
         }
                
 
