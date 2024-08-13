@@ -33,18 +33,18 @@ namespace SistemaInventario.AccesoDatos.Repositorio
         }
 
 
-        public async Task<IEnumerable<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string incluipropiedades = null, bool isTracking = true)
+        public async Task<IEnumerable<T>> ObtenerTodos(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string incluirPropiedades = null, bool isTracking = true)
         {
             IQueryable<T> query = dbSet;
             if (filtro != null)
             {
                 query = query.Where(filtro);  //select * from ... 
-            }
-            if (incluipropiedades != null)
+            }            
+            if (incluirPropiedades != null)
             {
-                foreach (var incluirProp in incluipropiedades.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var incluirProp in incluirPropiedades.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(incluirProp);  //ejemplo "Categoria Marca" modelos relacionados
+                    query = query.Include(incluirProp);    //  ejemplo "Categoria,Marca"
                 }
             }
             if (orderBy != null)
